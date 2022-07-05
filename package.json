@@ -1,50 +1,31 @@
 {
-  "name": "generator-react-native-component",
-  "version": "0.0.0",
-  "description": "Yeoman generator for react native component.",
-  "homepage": "https://github.com/afeiship/generator-react-native-component",
-  "author": {
-    "name": "afeiship",
-    "email": "1290657123@qq.com",
-    "url": "https://github.com/afeiship"
-  },
-  "files": [
-    "generators"
-  ],
-  "main": "generators/index.js",
+  "name": "@jswork/generator-gitlab",
+  "version": "1.0.0",
+  "description": "Yeoman generator for gitlab.",
   "keywords": [
-    "yeoman generator react react-native component widget",
+    "yeoman",
+    "yo",
     "yeoman-generator"
   ],
+  "engines": {
+    "npm": ">= 4.0.0"
+  },
   "devDependencies": {
-    "yeoman-test": "^1.6.0",
-    "yeoman-assert": "^3.0.0",
-    "nsp": "^2.6.3",
-    "eslint": "^3.18.0",
-    "eslint-config-xo-space": "^0.16.0",
-    "jest": "^19.0.2",
-    "jest-cli": "^19.0.1"
+    "jest": "^28.0.3",
+    "prettier": "^2.6.2",
+    "yeoman-assert": "^3.1.1",
+    "yeoman-environment": "^3.9.1",
+    "yeoman-test": "^6.3.0"
   },
   "dependencies": {
-    "yeoman-generator": "^1.0.0",
-    "chalk": "^1.1.3",
-    "yosay": "^2.0.0"
+    "@jswork/generator-prompts": "^1.1.7",
+    "@jswork/yeoman-generator-helper": "^1.0.6",
+    "yeoman-generator": "^5.6.1",
+    "yosay": "^2.0.2"
   },
-  "jest": {
-    "testEnvironment": "node"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/afeiship/generator-gitlab.git"
   },
-  "scripts": {
-    "prepublish": "nsp check",
-    "pretest": "eslint . --fix",
-    "test": "jest"
-  },
-  "eslintConfig": {
-    "extends": "xo-space",
-    "env": {
-      "jest": true,
-      "node": true
-    }
-  },
-  "repository": "git@github.com:afeiship/generator-react-native-component.git",
   "license": "MIT"
 }

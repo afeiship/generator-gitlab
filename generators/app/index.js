@@ -1,60 +1,41 @@
 'use strict';
 const Generator = require('yeoman-generator');
-const chalk = require('chalk');
 const yosay = require('yosay');
-const yoHelper = require('yeoman-generator-helper');
-
+const globby = require('globby');
+const yoHelper = require('@jswork/yeoman-generator-helper');
+const genp = require('@jswork/generator-prompts');
+const prompts = genp(['project_name', 'description', 'filetype']);
 
 module.exports = class extends Generator {
-  prompting() {
+  async prompting() {
     // Have Yeoman greet the user.
-    this.log(yosay(
-      'Welcome to the stunning ' + chalk.red('generator-react-native-component') + ' generator!'
-    ));
-
-    let prompts = [{
-      type: 'input',
-      name: 'project_name',
-      message: 'Your project_name (eg: like this `wepy-button` )?',
-      default: yoHelper.discoverRoot
-    }, {
-      type: 'input',
-      name: 'description',
-      message: 'Your description?'
-    }];
-
-    return this.prompt(prompts).then(function (props) {
-      // To access props later use this.props.someAnswer;
-      this.props = props;
-    }.bind(this));
-  }
-
-  writing() {
-    yoHelper.rewriteProps(this.props);
-    this._writingCopyFiles();
-    this._writingTplFiles();
-  }
-
-  _writingCopyFiles() {
-    this.fs.copy(
-      this.templatePath('{.*,build/*}'),
-      this.destinationPath('.')
-    );
-  }
-
-  _writingTplFiles() {
-    this.fs.copyTpl(
-      this.templatePath('{*,RnComp/*.*,src/**/*}'),
-      this.destinationPath('.'),
-      this.props
-    );
+    this.log(yosay(`Welcome to the stunning "generator-gitlab" generator!`));
+    this.props = await this.prompt(prompts);
   }
 
   install() {
-    console.log('use ` yarn install `');
+    this.fs.copyTpl(
+      globby.sync(this.templatePath('js/**'), { dot: true }),
+      this.destinationPath(),
+      {
+        ...this.props,
+        ctx: yoHelper.ctx,
+      }
+    );
   }
 
   end() {
-    console.log('Enjoy coding~ :)');
+    this.extendPackageJson({
+      scripts: {
+        start: 'env-cmd -e envs react-scripts start',
+        build: 'env-cmd -e envs react-scripts build',
+      },
+      dependencies: {
+        '@jswork/env-select': '^1.0.5',
+      },
+      devDependencies: {
+        'env-cmd': '^10.1.0',
+      },
+    });
   }
 };

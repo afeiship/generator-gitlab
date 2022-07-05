@@ -1,0 +1,9 @@
+include:
+  # use frontend-ci
+  - project: aric.zheng/frontend-ci
+    ref: master
+    file: dist/templates/react-oss/main.yml
+
+variables:
+  NODE_VERSION: 14.17.0
+  BUCKET_CONTEXT: biotech-site-predict-frontend/casdb-frontend
