@@ -14,18 +14,21 @@ module.exports = class extends Generator {
   }
 
   install() {
+    const { filetype } = this.props;
+    const srcFiles = [this.templatePath(`${filetype}/shared/**`), this.templatePath('.*')];
     this.fs.copyTpl(
-      globby.sync(this.templatePath('js/**'), { dot: true }),
+      globby.sync(srcFiles, { dot: true }),
       this.destinationPath(),
+      { ...this.props, ctx: yoHelper.ctx },
+      null,
       {
-        ...this.props,
-        ctx: yoHelper.ctx,
+        processDestinationPath: (filePath) => filePath.replace(filetype, 'src'),
       }
     );
   }
 
   end() {
-    this.extendPackageJson({
+    const pkgJson = {
       scripts: {
         start: 'env-cmd -e envs react-scripts start',
         build: 'env-cmd -e envs react-scripts build',
@@ -36,6 +39,9 @@ module.exports = class extends Generator {
       devDependencies: {
         'env-cmd': '^10.1.0',
       },
-    });
+    };
+
+    // Extend or create package.json file in destination path
+    this.fs.extendJSON(this.destinationPath('package.json'), pkgJson);
   }
 };

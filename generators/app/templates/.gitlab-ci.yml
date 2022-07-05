@@ -5,5 +5,4 @@ include:
     file: dist/templates/react-oss/main.yml
 
 variables:
-  NODE_VERSION: 14.17.0
-  BUCKET_CONTEXT: biotech-site-predict-frontend/casdb-frontend
+  BUCKET_CONTEXT: biotech-site-predict-frontend/<%= project_name %>
