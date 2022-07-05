@@ -1,7 +1,7 @@
 'use strict';
-const Generator = require('yeoman-generator');
 const yosay = require('yosay');
 const globby = require('globby');
+const Generator = require('@jswork/yeoman-generator');
 const yoHelper = require('@jswork/yeoman-generator-helper');
 const genp = require('@jswork/generator-prompts');
 const prompts = genp(['project_name', 'description', 'filetype']);
@@ -41,7 +41,6 @@ module.exports = class extends Generator {
       },
     };
 
-    // Extend or create package.json file in destination path
-    this.fs.extendJSON(this.destinationPath('package.json'), pkgJson);
+    this.extendJSON(pkgJson);
   }
 };
