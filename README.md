@@ -10,5 +10,5 @@ npm link
 
 ## usage
 ```shell
-yo @jswork/pypi
+yo @jswork/gitlab
 ```
