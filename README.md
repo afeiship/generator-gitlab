@@ -5,7 +5,7 @@
 ```shell
 git clone git@github.com:afeiship/generator-gitlab.git
 cd generator-gitlab
-npm link
+npm i && npm link
 ```
 
 ## usage
