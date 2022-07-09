@@ -13,7 +13,7 @@ module.exports = class extends Generator {
     this.props = await this.prompt(prompts);
   }
 
-  install() {
+  writing() {
     const { filetype } = this.props;
     const srcFiles = [this.templatePath(`${filetype}/shared/**`), this.templatePath('.*')];
     this.fs.copyTpl(
