@@ -1,5 +1,6 @@
 include:
   # use frontend-ci
+  # use tag ref
   - project: aric.zheng/frontend-ci
     ref: master
     file: dist/templates/react-oss/main.yml
